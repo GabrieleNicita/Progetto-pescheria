@@ -1,11 +1,9 @@
 package com.TN.Pescheria.Controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,34 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TN.Pescheria.IService.IAnagraficaPesciService;
+import com.TN.Pescheria.IService.ICategorieService;
 import com.TN.Pescheria.Model.AnagraficaPesci;
-
-@Controller
-@RequestMapping("/Pesci")
-public class AnagraficaPesciController {
-	
+import com.TN.Pescheria.Model.Categorie;
+@RequestMapping("/Categorie")
+public class CategorieController {
 	@Autowired 
-	IAnagraficaPesciService anagraficaPesciService;
+	ICategorieService categorieService;
 	
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Aggiungi") 
-	public @ResponseBody AnagraficaPesci nuovoPesce(@RequestBody AnagraficaPesci pesce) {
-		return anagraficaPesciService.inserimentoPesci(pesce);
+	public @ResponseBody Categorie nuovoCategoria(@RequestBody Categorie categoria) {
+		return categorieService.inserimentoCategoria(categoria);
 		
 	}
 	
 	@PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},path="/Modifica") 
-	public @ResponseBody AnagraficaPesci modificaPesce (@RequestBody AnagraficaPesci pesce) {
-		return anagraficaPesciService.modificaPesci(pesce);
+	public @ResponseBody Categorie modificaCategoria (@RequestBody Categorie categoria) {
+		return categorieService.modificaCategoria(categoria);
 		}
-	@DeleteMapping(path="/delete/{id}") 
-	public @ResponseBody String cancellaPesce (@PathVariable(value="id") int idpesce) {
-		anagraficaPesciService.eliminaPesce(idpesce);
+	@DeleteMapping(path="/Cancella/{id}") 
+	public @ResponseBody String cancellaCategoria (@PathVariable(value="id") int idcategoria) {
+		categorieService.eliminaCategoria(idcategoria);
 		return "ELIMINATO CORRETTAMENTE";
 	}
 	
 	@GetMapping(path="/") 
-	public @ResponseBody List<AnagraficaPesci> listaPesci () {
-		return anagraficaPesciService.mostraPesci();
+	public @ResponseBody List<Categorie> listaCategorie () {
+		return categorieService.mostracategoria();
 	}
 }
