@@ -2,7 +2,7 @@ package com.TN.Pescheria.Controller;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -46,7 +46,6 @@ public class PrezziController {
 		return prezziService.trovaPrezzo(idprezzo).get();
 	}
 	@PostMapping(path="/Controlla")
-	@Transactional
 	public @ResponseBody Prezzi trovaprezzo(@RequestBody Double prezzo){
 		if (prezziService.trovaPrezzoinbasealcosto(prezzo).isPresent()){
 			return prezziService.trovaPrezzoinbasealcosto(prezzo).get();
