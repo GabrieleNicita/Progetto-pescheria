@@ -1,6 +1,7 @@
 package com.TN.Pescheria.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class PrezziService implements IPrezziService{
 	@Override
 	public List<Prezzi> mostraPrezzo() {
 		return (List<Prezzi>) repository.findAll();
+	}
+
+	@Override
+	public Optional<Prezzi> trovaPrezzo(Integer idprezzo) {
+		return repository.findById(idprezzo);
 	}
 }
