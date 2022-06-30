@@ -22,7 +22,7 @@ public class AnagraficaPesci {
 	@JsonProperty("id")
 	private Integer idpesce;
 	private String nome;
-	
+	private String descrizione;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
 	Prezzi prezzi;
@@ -33,10 +33,17 @@ public class AnagraficaPesci {
 	@JoinColumn(name="id_trattamenti")
 	Trattamenti trattamenti;
 	public AnagraficaPesci() {};
-	public AnagraficaPesci(Integer idpesce,String nome) {
+	public AnagraficaPesci(Integer idpesce,String nome,String descrizione) {
 		this.idpesce=idpesce;
 		this.nome=nome;
+		this.descrizione=descrizione;
 	};
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
 	public void setIdpesce(Integer idpesce) {
 		this.idpesce = idpesce;
 	}

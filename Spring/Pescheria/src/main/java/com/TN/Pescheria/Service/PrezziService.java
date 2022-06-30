@@ -40,4 +40,9 @@ public class PrezziService implements IPrezziService{
 	public Optional<Prezzi> trovaPrezzo(Integer idprezzo) {
 		return repository.findById(idprezzo);
 	}
+
+	@Override
+	public Optional<Prezzi> trovaPrezzoinbasealcosto(Double prezzo) {
+		return repository.findByprezzo(prezzo);
+	}
 }

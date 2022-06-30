@@ -43,4 +43,14 @@ public class PrezziController {
 	public @ResponseBody Prezzi prezzoPerId(@PathVariable(value="id") int idprezzo) {
 		return prezziService.trovaPrezzo(idprezzo).get();
 	}
+	@PostMapping(path="/Controlla")
+	public @ResponseBody Prezzi trovaprezzo(@RequestBody Double prezzo){
+		if (prezziService.trovaPrezzoinbasealcosto(prezzo).isPresent()){
+			return prezziService.trovaPrezzoinbasealcosto(prezzo).get();
+		}else {
+			Prezzi prz = new Prezzi(prezzo);
+			return prezziService.inserimentoPrezzo(prz);
+		}
+		
+	}
 }

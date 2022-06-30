@@ -11,4 +11,5 @@ public interface IPrezziService {
 	void eliminaPrezzo(int idprezzo);
 	List<Prezzi> mostraPrezzo();
 	Optional<Prezzi> trovaPrezzo(Integer idprezzo);
+	Optional<Prezzi> trovaPrezzoinbasealcosto(Double prezzo);
 }
