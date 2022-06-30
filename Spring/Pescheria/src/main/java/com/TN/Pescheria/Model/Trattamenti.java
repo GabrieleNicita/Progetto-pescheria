@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 
 @Table(name = "Trattamenti")
@@ -18,6 +20,7 @@ public class Trattamenti {
 	@Id
 
 	@Column(name="id_trattamenti")
+	@JsonProperty("id")
 	private Integer idtrattamento;
 	private String trattamento;
 	@OneToMany(mappedBy = "trattamenti",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)

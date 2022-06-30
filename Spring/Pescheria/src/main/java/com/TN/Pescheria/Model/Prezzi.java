@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 
 @Table(name = "Prezzi")
@@ -20,6 +22,7 @@ public class Prezzi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_prezzi")
+	@JsonProperty("id")
 	private Integer idprezzo;
 	private double prezzo;
 	@OneToMany(mappedBy = "prezzi",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)

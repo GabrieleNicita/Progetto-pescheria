@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 
 @Table(name = "anagraficapesci")
@@ -17,6 +19,7 @@ public class AnagraficaPesci {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_anagrafica")
+	@JsonProperty("id")
 	private Integer idpesce;
 	private String nome;
 	
