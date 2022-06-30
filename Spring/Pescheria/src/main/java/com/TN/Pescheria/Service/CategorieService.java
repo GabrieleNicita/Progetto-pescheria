@@ -1,14 +1,15 @@
 package com.TN.Pescheria.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.TN.Pescheria.IService.ICategorieService;
-import com.TN.Pescheria.Model.AnagraficaPesci;
+
 import com.TN.Pescheria.Model.Categorie;
-import com.TN.Pescheria.Repository.AnagraficaPesciRepository;
+
 import com.TN.Pescheria.Repository.CategorieRepository;
 @Service
 public class CategorieService implements ICategorieService{
@@ -33,5 +34,10 @@ public class CategorieService implements ICategorieService{
 	@Override
 	public List<Categorie> mostracategoria() {
 		return (List<Categorie>) repository.findAll();
+	}
+
+	@Override
+	public Optional<Categorie> trovaCategorie(Integer idcategoria) {
+		return repository.findById(idcategoria);
 	}
 }

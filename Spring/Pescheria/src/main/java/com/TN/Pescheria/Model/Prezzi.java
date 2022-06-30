@@ -24,6 +24,11 @@ public class Prezzi {
 	private double prezzo;
 	@OneToMany(mappedBy = "prezzi",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();
+	public Prezzi() {}
+	public Prezzi(Integer idprezzo, double prezzo) {
+		this.idprezzo=idprezzo;
+		this.prezzo=prezzo;
+	}
 	public Integer getIdprezzo() {
 		return idprezzo;
 	}

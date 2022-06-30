@@ -28,7 +28,11 @@ public class AnagraficaPesci {
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_trattamenti")
 	Trattamenti trattamenti;
-	
+	public AnagraficaPesci() {};
+	public AnagraficaPesci(Integer idpesce,String nome) {
+		this.idpesce=idpesce;
+		this.nome=nome;
+	};
 	public void setIdpesce(Integer idpesce) {
 		this.idpesce = idpesce;
 	}

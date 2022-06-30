@@ -36,7 +36,7 @@ public class AnagraficaPesciController {
 	public @ResponseBody AnagraficaPesci modificaPesce (@RequestBody AnagraficaPesci pesce) {
 		return anagraficaPesciService.modificaPesci(pesce);
 		}
-	@DeleteMapping(path="/delete/{id}") 
+	@DeleteMapping(path="/Cancella/{id}") 
 	public @ResponseBody String cancellaPesce (@PathVariable(value="id") int idpesce) {
 		anagraficaPesciService.eliminaPesce(idpesce);
 		return "ELIMINATO CORRETTAMENTE";

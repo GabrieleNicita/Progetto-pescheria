@@ -43,4 +43,9 @@ public class CategorieController {
 	public @ResponseBody List<Categorie> listaCategorie () {
 		return categorieService.mostracategoria();
 	}
+	
+	@GetMapping(path="/{id}")
+	public @ResponseBody Categorie categoriaPerId (@PathVariable(value="id") int idcategoria) {
+		return categorieService.trovaCategorie(idcategoria).get();
+	}
 }

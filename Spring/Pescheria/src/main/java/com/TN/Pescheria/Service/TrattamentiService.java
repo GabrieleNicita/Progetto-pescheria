@@ -1,14 +1,13 @@
 package com.TN.Pescheria.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.TN.Pescheria.IService.ITrattamentiService;
-import com.TN.Pescheria.Model.Prezzi;
 import com.TN.Pescheria.Model.Trattamenti;
-import com.TN.Pescheria.Repository.AnagraficaPesciRepository;
 import com.TN.Pescheria.Repository.TrattamentiRepository;
 @Service
 public class TrattamentiService implements ITrattamentiService{
@@ -34,5 +33,10 @@ public class TrattamentiService implements ITrattamentiService{
 	@Override
 	public List<Trattamenti> mostraTrattamento() {
 		return (List<Trattamenti>) repository.findAll();
+	}
+
+	@Override
+	public Optional<Trattamenti> trovaTrattamento(Integer idtrattamento) {
+		return repository.findById(idtrattamento);
 	}
 }
