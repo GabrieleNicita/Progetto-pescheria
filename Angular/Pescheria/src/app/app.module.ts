@@ -8,11 +8,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InserimentoPesceComponent } from './inserimento-pesce/inserimento-pesce.component';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    InserimentoPesceComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +26,12 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     MatToolbarModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

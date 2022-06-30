@@ -1,10 +1,12 @@
 import { Categoria } from "./Categoria"
+import { Prezzo } from "./Prezzo"
+import { Trattamento } from "./Trattamento"
 
 export interface Pesce{
     id:number
     nome:string
     categoria:Categoria
-    prezzoAlKg:number
+    trattamento:Trattamento
+    prezzoAlKg:Prezzo
     descrizione:string
-    foto:string
 }
