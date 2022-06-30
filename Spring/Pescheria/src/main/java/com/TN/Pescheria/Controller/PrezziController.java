@@ -2,6 +2,8 @@ package com.TN.Pescheria.Controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ import com.TN.Pescheria.Model.Prezzi;
 public class PrezziController {
 	@Autowired 
 	IPrezziService prezziService;
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Aggiungi") 
+	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Aggiungi")
 	public @ResponseBody Prezzi nuovoPrezzo(@RequestBody Prezzi prezzo) {
 		return prezziService.inserimentoPrezzo(prezzo);
 	}
@@ -44,10 +46,11 @@ public class PrezziController {
 		return prezziService.trovaPrezzo(idprezzo).get();
 	}
 	@PostMapping(path="/Controlla")
+	@Transactional
 	public @ResponseBody Prezzi trovaprezzo(@RequestBody Double prezzo){
 		if (prezziService.trovaPrezzoinbasealcosto(prezzo).isPresent()){
 			return prezziService.trovaPrezzoinbasealcosto(prezzo).get();
-		}else {
+		}else{
 			Prezzi prz = new Prezzi(prezzo);
 			return prezziService.inserimentoPrezzo(prz);
 		}
