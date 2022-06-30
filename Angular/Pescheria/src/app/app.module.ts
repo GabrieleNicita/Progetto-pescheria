@@ -13,12 +13,17 @@ import { InserimentoPesceComponent } from './inserimento-pesce/inserimento-pesce
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatButtonModule} from '@angular/material/button';
+import { MagazzinoComponent } from './magazzino/magazzino.component';
+import {MatTableModule} from '@angular/material/table'
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CatalogoComponent,
-    InserimentoPesceComponent
+    InserimentoPesceComponent,
+    MagazzinoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +35,10 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

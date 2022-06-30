@@ -1,0 +1,35 @@
+<table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
+
+   
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID n. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+ 
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="categoria.categoria">
+      <th mat-header-cell *matHeaderCellDef> categoria </th>
+      <td mat-cell *matCellDef="let element"> {{element.categoria.categoria}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="trattamento.trattamento">
+      <th mat-header-cell *matHeaderCellDef> trattamento </th>
+      <td mat-cell *matCellDef="let element"> {{element.trattamento.trattamento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prezzo.prezzoAlKg">
+      <th mat-header-cell *matHeaderCellDef> prezzo </th>
+      <td mat-cell *matCellDef="let element"> {{element.prezzo.prezzoAlKg}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

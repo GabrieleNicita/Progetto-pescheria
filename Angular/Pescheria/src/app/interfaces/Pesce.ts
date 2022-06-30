@@ -7,6 +7,6 @@ export interface Pesce{
     nome:string
     categoria:Categoria
     trattamento:Trattamento
-    prezzoAlKg:Prezzo
+    prezzo:Prezzo
     descrizione:string
 }

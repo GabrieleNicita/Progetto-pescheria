@@ -19,12 +19,3 @@
     background-color: #ddd;
     color: black;
   }
-mat-toolbar h2{
-  margin-left: 56%;
-  float:left;
-  text-align: center;
-  padding: 16px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #f2f2f2;
-}

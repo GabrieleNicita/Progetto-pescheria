@@ -1,15 +1,39 @@
 <mat-card>
-<form>
-    <mat-form-field appearance="fill">
+    <form [formGroup]="formPesce" (ngSubmit)="subPesce()">
+
+        <mat-form-field appearance="fill" class="pieno"> 
+            <mat-label>Nome</mat-label>
+            <input formControlName="nome" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="al">
+            <mat-label>Categoria pesce</mat-label>
+            <mat-select formControlName="categoria">
+            <mat-option *ngFor="let ctg of categoria" [value]="ctg">
+                {{ctg.categoria}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
         
-        <mat-label>Input</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        
-        <mat-label>Input</mat-label>
-        <input matInput>
-      </mat-form-field>
-      
-</form>
+        <mat-form-field appearance="fill" class="al">
+            <mat-label>Trattamento pesce</mat-label>
+            <mat-select formControlName="trattamento">
+            <mat-option *ngFor="let trtt of trattamento" [value]="trtt">
+                {{trtt.trattamento}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="pieno">
+            <mat-label>descrizione</mat-label>
+            <textarea matInput formControlName="descrizione"></textarea>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always" id="prezzo">
+            <mat-label>Prezzo al Kilo</mat-label>
+            <input formControlName="prezzoAlKg" matInput type="number" class="example-right-align" placeholder=".00">
+            <span matPrefix>€&nbsp;</span>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Aggiungi Opesc</button>
+    </form>
 </mat-card>

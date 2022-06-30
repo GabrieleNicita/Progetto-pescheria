@@ -2,6 +2,10 @@ import { Component} from '@angular/core';
 import { Categoria } from '../interfaces/Categoria';
 import { CategorieService } from '../services/categorie.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TrattamentoService } from '../services/trattamento.service';
+import { Trattamento } from '../interfaces/Trattamento';
+import { Pesce } from '../interfaces/Pesce';
+import { PesceService } from '../services/pesce.service';
 
 @Component({
   selector: 'app-inserimento-pesce',
@@ -10,22 +14,38 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class InserimentoPesceComponent{
 
-  //formPesce:FormGroup
+  hide=true
+  formPesce:FormGroup
   categoria:Categoria[]=new Array()
+  trattamento:Trattamento[]=new Array()
 
-  constructor(private categoriaSer:CategorieService,private fb:FormBuilder) { 
+  constructor(private categoriaSer:CategorieService,private fb:FormBuilder,private trattamentoSer:TrattamentoService,private pesceServ:PesceService) { 
     this.categoriaSer.listaCategorie().subscribe(ct=>{(this.categoria =ct )})
+    this.trattamentoSer.listaTrattamenti().subscribe(tr=>{(this.trattamento =tr )})
 
-    /*this.formPesce=this.fb.group({
-      nome:["pesce",Validators.required],
+    this.formPesce=this.fb.group({
+      nome:["",Validators.required],
       categoria:[Validators.required],
-      trattamento:[Validators.required],
-      prezzoAlKg:[Validators.required],
-      descrizione:["",Validators.required]
-    })*/
+      trattamento:["",Validators.required],
+      descrizione:["",Validators.required],
+      prezzoAlKg:[0,Validators.required],
+    })
 
   }
 
-  
+  subPesce(){
+    const pesce={
+      nome:this.formPesce.value.nome,
+      categoria:this.formPesce.value.categoria,
+      trattamento:this.formPesce.value.trattamento,
+      descrizione:this.formPesce.value.descrizione,
+      prezzo:{
+        prezzoAlKg:this.formPesce.value.prezzoAlKg
+      }
+    } as Pesce
+
+    console.log(JSON.stringify(pesce,null,4))
+    this.pesceServ.aggiungiPesce(pesce)
+  }
 
 }
