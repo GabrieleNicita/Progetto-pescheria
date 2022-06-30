@@ -32,9 +32,7 @@ public class Categorie {
 		this.categoria=categoria;
 	}
 	
-	public Set<AnagraficaPesci> getAnagraficapesci() {
-		return anagraficapesci;
-	}
+	
 	public String getCategoria() {
 		return categoria;
 	}

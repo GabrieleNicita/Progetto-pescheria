@@ -28,9 +28,7 @@ public class Trattamenti {
 		this.idtrattamento=idtrattamento;
 	}
 	
-	public Set<AnagraficaPesci> getAnagraficapesci() {
-		return anagraficapesci;
-	}
+	
 	public Integer getIdtrattamento() {
 		return idtrattamento;
 	}

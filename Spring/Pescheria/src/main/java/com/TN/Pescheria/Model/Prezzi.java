@@ -32,9 +32,7 @@ public class Prezzi {
 	public Integer getIdprezzo() {
 		return idprezzo;
 	}
-	public Set<AnagraficaPesci> getPrenotazioni() {
-		return anagraficapesci;
-	}
+	
 	public double getPrezzo() {
 		return prezzo;
 	}

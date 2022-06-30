@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.TN.Pescheria.IService.ICategorieService;
 import com.TN.Pescheria.Model.Categorie;
+@Controller
 @RequestMapping("/Categorie")
 public class CategorieController {
 	@Autowired 
@@ -37,7 +39,7 @@ public class CategorieController {
 	}
 	
 	@GetMapping(path="/") 
-	public @ResponseBody List<Categorie> listaCategorie () {
+	public @ResponseBody List<Categorie> listaCategorie(){
 		return categorieService.mostracategoria();
 	}
 	

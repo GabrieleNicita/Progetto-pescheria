@@ -19,6 +19,7 @@ public class AnagraficaPesci {
 	@Column(name="id_anagrafica")
 	private Integer idpesce;
 	private String nome;
+	
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
 	Prezzi prezzi;
