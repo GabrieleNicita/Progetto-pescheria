@@ -16,7 +16,7 @@ export class PesceService {
     return this.http.get<Pesce[]>(this.pesciURL)
   }
 
-  public aggiungiPesce(formP:any){
+  public aggiungiPesce(formP:Pesce){
     const headers={'content-type':'application/json'} 
     this.http.post(this.pesciURL+'Aggiungi',JSON.stringify(formP),{'headers':headers}).subscribe();
   }

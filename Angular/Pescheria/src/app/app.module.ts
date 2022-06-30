@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MagazzinoComponent } from './magazzino/magazzino.component';
 import {MatTableModule} from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import {MatTableModule} from '@angular/material/table'
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
