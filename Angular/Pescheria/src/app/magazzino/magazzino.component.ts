@@ -26,7 +26,7 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
-  //tabella:PesceMagazzino=new Array()
+ //tabella:PesceMagazzino=new Array()
   operazione:string
   form:boolean
 
@@ -42,6 +42,7 @@ export class MagazzinoComponent {
     private _liveAnnouncer: LiveAnnouncer,
     iconRegistry: MatIconRegistry, 
     sanitizer: DomSanitizer,
+    private pesceServ:PesceService
     ){
 
     this.table as ElementRef
@@ -55,17 +56,24 @@ export class MagazzinoComponent {
     
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
-      /* ps.forEach(p => {
+       /*ps.forEach(p => {
+        this.tabella.id=p.id
+        this.tabella.nome=p.nome
+        this.tabella.descrizione=p.descrizione
         this.tabella.categoria=p.categoria.categoria
-        this.tabella.prezzo=p.
+        this.tabella.trattamento=p.trattamento.trattamento
+        this.tabella.prezzo=p.prezzo.prezzoAlKg
        });*/
-       
+      // console.log(this.tabella)
        this.dataSource.sort = this.sort;
        this.dataSource.paginator = this.paginator; 
        this.dataSource.data=ps;       
     })
     
   }
+
+
+
 
  exportAsExcel()
   {
@@ -95,10 +103,7 @@ export class MagazzinoComponent {
   inserimentoForm(){
       if(this.form){
 
-      let currentUrl = this.router.url;
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-          this.router.navigate([currentUrl]);}); 
-                  
+      window.location.reload()
       this.form=false
       this.operazione="NUOVO PESCE"
       }
@@ -107,8 +112,15 @@ export class MagazzinoComponent {
       this.operazione="ANNULLA"
       }
     }
+    alert(id:number){
+      
+      if(confirm("SEI SICURO DI VOLER CANCELLARE QUESTO ELEMENTO")) {
+        this.pesceServ.rimuoviPesce(id);
+        window.location.reload()
+        
+    }
 }
 
 
 
-
+}
