@@ -43,8 +43,6 @@ export class InserimentoPesceComponent{
         prezzoAlKg:this.formPesce.value.prezzoAlKg
       }
     } as Pesce
-
-    console.log(JSON.stringify(pesce,null,4))
     this.pesceServ.aggiungiPesce(pesce)
   }
 

@@ -4,17 +4,16 @@
     align-items: flex-start;
   }
 
-mat-card{
-  width: 350px;
-    height: 60%;
-    display: block;
-    margin-left:auto;
-    margin-right:auto;  
-    vertical-align:middle;
-  
-}
+  mat-card{
+    width: 23%;
+  height: auto;
+  position: absolute;
+  top: 18%;
+  left: 38.5%;
+  right: 38.5%;
+  }
 .pieno{
-    width: 350px;
+    width: 100%;
     display: block;
     margin-left:auto;
     margin-right:auto;  
@@ -22,13 +21,12 @@ mat-card{
   
 }
 .al{
-  width: 170px;
-  margin-right: 5px;
+  width: 45%;
+  margin-right: 5%;
 }
 #prezzo{
-  width: 210px;
-  margin-left:70px;
-    margin-right:70px;  
+  width: 50%;
+  margin-left: 25%;
 }
 input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
@@ -47,8 +45,8 @@ input.example-right-align {
   text-align: right;
 }
 button{
-  margin-left: 0.5rem;
-  width: 350px;
+  margin-left: 0.5%;
+  width: 100%;
   margin-left:auto;
     margin-right:auto;  
 }

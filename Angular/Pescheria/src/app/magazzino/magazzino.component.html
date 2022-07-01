@@ -1,22 +1,22 @@
 <div>
-  <button>AGGIUNGI ROBA AOH</button>
-<table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
+  
+<table mat-table  [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
    
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID n. </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id"> ID n. </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
   
  
     <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nome"> Nome </th>
       <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
     </ng-container>
   
    
     <ng-container matColumnDef="categoria.categoria">
-      <th mat-header-cell *matHeaderCellDef> categoria </th>
+      <th mat-header-cell *matHeaderCellDef > categoria </th>
       <td mat-cell *matCellDef="let element"> {{element.categoria.categoria}} </td>
     </ng-container>
   
@@ -27,18 +27,24 @@
     </ng-container>
 
     <ng-container matColumnDef="prezzo.prezzoAlKg">
-      <th mat-header-cell *matHeaderCellDef> prezzo </th>
+      <th mat-header-cell *matHeaderCellDef > prezzo </th>
       <td mat-cell *matCellDef="let element"> {{element.prezzo.prezzoAlKg}} </td>
     </ng-container>
-  
+    <ng-container matColumnDef="azioni">
+      <th mat-header-cell *matHeaderCellDef> Azioni </th>
+      <td mat-cell *matCellDef="let element"><button type="submit" mat-raised-button color="warn" id="modifica"><mat-icon>delete</mat-icon></button> <button type="submit" mat-raised-button color="primary"><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></button>  </td>
+    </ng-container>
+ 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+   <div id="aggiungipesce">
+  <button type="submit" onclick="inserimento()" mat-raised-button color="primary">{{operazione}}</button>
+  </div>
+  <mat-paginator [pageSizeOptions]="[50,25,20,10,5,1]"
                  showFirstLastButtons 
                  aria-label="Select page of periodic elements">
   </mat-paginator>
-  
+  <app-inserimento-pesce *ngIf="form"></app-inserimento-pesce>
 </div>
   

@@ -1,3 +1,24 @@
 table {
     width: 100%;
+   
   }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+    text-align: center;
+  }
+  
+  #aggiungipesce{
+    position: fixed;
+    left: 0.5%;
+    margin-top: 10px;
+    width: 325px;
+  }
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+    width: 200px;
+    text-align: center;
+  }
+  #modifica{
+    margin-right: 10%;
+  }
+  

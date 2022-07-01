@@ -18,13 +18,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { MagazzinoComponent } from './magazzino/magazzino.component';
 import {MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CatalogoComponent,
     InserimentoPesceComponent,
-    MagazzinoComponent
+    MagazzinoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserModule,
+    MatTableModule,
+    MatSortModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
