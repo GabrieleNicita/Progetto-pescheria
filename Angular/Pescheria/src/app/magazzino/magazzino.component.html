@@ -23,24 +23,24 @@
       <td mat-cell *matCellDef="let element"> {{element.trattamento}} </td>
     </ng-container>
 
- <!--    
-  <ng-container matColumnDef="prezzo.prezzoAlKg">
-      <th mat-header-cell *matHeaderCellDef> prezzo </th>
+    
+  <ng-container matColumnDef="prezzo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th>
       <td mat-cell *matCellDef="let element"> 
         <ng-container *ngIf="element.position!==editRowId">
-        <span (click)="edit(element.position,'prezzo.prezzoAlKg')">{{element.prezzo.prezzoAlKg}} </span>
+          <span> (click)="edit(element.position,'prezzo')">{{element.prezzo}} </span>
         </ng-container>
         <ng-container *ngIf="element.position===editRowId">
-        <input matInput name="prezzo" [(ngModel)]="element.prezzo.prezzoAlKg"> 
+          <input matInput name="prezzo" [(ngModel)]="element.prezzo"> <button id="spostabottone" mat-raised-button color="accent">V</button>
         </ng-container>
-        </td>
+       
     </ng-container>
--->
+<!-- 
  <ng-container matColumnDef="prezzo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th>
-      <td mat-cell *matCellDef="let element"> {{element.prezzo}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th> 
+      <td mat-cell *matCellDef="let element"> <input matInput name="prezzo" [(ngModel)]="element.prezzo">   </td>
     </ng-container> 
-
+--> 
    
     
     <ng-container matColumnDef="azioni">

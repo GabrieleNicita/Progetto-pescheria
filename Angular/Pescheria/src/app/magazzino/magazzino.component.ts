@@ -79,9 +79,6 @@ export class MagazzinoComponent {
     
   }
 
-
-
-
  exportAsExcel()
   {
    
@@ -127,15 +124,16 @@ export class MagazzinoComponent {
         
     }
 } 
- /*
+ 
   edit(row:any,element:any)
   {
     this.editRowId=row;
-   
-    setTimeout(()=>{this.inputs.find(x=>{ x.nativeElement.getAttribute('prezzoAlKilo')==element})
-   .nativeElement.focus()
+    setTimeout(()=>{
+      this.inputs.find( (x:any) =>{ x.nativeElement.getAttribute('prezzo')==element}).nativeElement.focus()
     })
-  }*/
+
+    
+  }
 
 
 
