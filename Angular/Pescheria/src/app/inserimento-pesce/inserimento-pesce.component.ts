@@ -6,6 +6,7 @@ import { TrattamentoService } from '../services/trattamento.service';
 import { Trattamento } from '../interfaces/Trattamento';
 import { Pesce } from '../interfaces/Pesce';
 import { PesceService } from '../services/pesce.service';
+import { EventEmitter,Output} from '@angular/core';
 
 @Component({
   selector: 'app-inserimento-pesce',
@@ -13,6 +14,8 @@ import { PesceService } from '../services/pesce.service';
   styleUrls: ['./inserimento-pesce.component.css']
 })
 export class InserimentoPesceComponent{
+
+  @Output() inserito= new EventEmitter()
 
   hide=true
   formPesce:FormGroup
@@ -42,8 +45,9 @@ export class InserimentoPesceComponent{
       prezzo:{
         prezzoAlKg:this.formPesce.value.prezzoAlKg
       }
-    } as Pesce
-    this.pesceServ.aggiungiPesce(pesce)
+    } 
+    this.pesceServ.aggiungiPesce(pesce as Pesce)
+    this.inserito.emit()
   }
 
 }

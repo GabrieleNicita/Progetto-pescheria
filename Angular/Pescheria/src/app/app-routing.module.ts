@@ -9,7 +9,6 @@ const routes: Routes = [
   {path: 'home',component:HomeComponent},
   {path: 'magazzino',component:MagazzinoComponent},
   {path: 'catalogo',component:CatalogoComponent},
-  {path: 'nuovo',component:InserimentoPesceComponent},
   { path: '',redirectTo: '/home', pathMatch: 'full' }
 ];
 

@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
+import { ElementRef } from '@angular/core';
 @NgModule({
   declarations: [
     AppComponent,

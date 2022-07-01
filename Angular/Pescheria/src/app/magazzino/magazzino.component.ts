@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Pesce } from '../interfaces/Pesce';
 import { PesceService } from '../services/pesce.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -7,7 +7,9 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
-
+import * as XLSX from 'xlsx';
+import { Router } from '@angular/router';
+import { PesceMagazzino } from '../interfaces/PesceMagazzino';
 
 const THUMBUP_ICON =
   `
@@ -24,31 +26,61 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
+  //tabella:PesceMagazzino=new Array()
   operazione:string
   form:boolean
 
    displayedColumns: string[]= ['id','nome','categoria.categoria','trattamento.trattamento','prezzo.prezzoAlKg','azioni'];
    dataSource= new MatTableDataSource<Pesce>();
-   
+   @ViewChild('TABLE',{ read: ElementRef }) table: ElementRef |any; 
    @ViewChild(MatPaginator) paginator: MatPaginator |any ;
    @ViewChild(MatSort) sort: MatSort |any;
 
-  constructor(private pesciSer:PesceService,private _liveAnnouncer: LiveAnnouncer,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+  constructor(
+    private router:Router,
+    private pesciSer:PesceService,
+    private _liveAnnouncer: LiveAnnouncer,
+    iconRegistry: MatIconRegistry, 
+    sanitizer: DomSanitizer,
+    ){
+
+    this.table as ElementRef
     
     this.form=false
     this.operazione="inserisci Opesce"
 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
-   
+    
+    
+    
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
+      /* ps.forEach(p => {
+        this.tabella.categoria=p.categoria.categoria
+        this.tabella.prezzo=p.
+       });*/
        
        this.dataSource.sort = this.sort;
        this.dataSource.paginator = this.paginator; 
-       this.dataSource.data=ps;
-       
+       this.dataSource.data=ps;       
     })
     
+  }
+
+ exportAsExcel()
+  {
+   
+    
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+    
+   
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Foglio');
+    
+    
+   XLSX.writeFile(wb,'Foglio.xlsx');
+    console.log("exported");
+
   }
 
   announceSortChange(sortState: Sort) {
@@ -60,16 +92,22 @@ export class MagazzinoComponent {
     }
   }
   
-  inserimento(){
+  inserimentoForm(){
+      if(this.form){
 
-  }
-
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);}); 
+                  
+      this.form=false
+      this.operazione="NUOVO PESCE"
+      }
+      else{
+      this.form=true
+      this.operazione="ANNULLA"
+      }
+    }
 }
-
-
-
-
-
 
 
 
