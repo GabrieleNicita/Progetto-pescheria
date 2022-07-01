@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import { ElementRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { ElementRef } from '@angular/core';
     BrowserModule,
     MatTableModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

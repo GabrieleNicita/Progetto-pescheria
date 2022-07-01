@@ -1,51 +1,67 @@
 
-  <div  #TABLE> 
-<table #table mat-table  [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+<div  #TABLE> 
+  <table #table mat-table  [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
- 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id"> ID n. </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
-  
- 
+    
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nome"> Nome </th>
       <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
     </ng-container>
-  
-   
-    <ng-container matColumnDef="categoria.categoria">
-      <th mat-header-cell *matHeaderCellDef > categoria </th>
-      <td mat-cell *matCellDef="let element"> {{element.categoria.categoria}} </td>
+     
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> categoria </th>
+      <td mat-cell *matCellDef="let element"> {{element.categoria}}</td>
     </ng-container>
-  
-  
-    <ng-container matColumnDef="trattamento.trattamento">
-      <th mat-header-cell *matHeaderCellDef> trattamento </th>
-      <td mat-cell *matCellDef="let element"> {{element.trattamento.trattamento}} </td>
+    
+    
+    <ng-container matColumnDef="trattamento">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> trattamento </th>
+      <td mat-cell *matCellDef="let element"> {{element.trattamento}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="prezzo.prezzoAlKg">
-      <th mat-header-cell *matHeaderCellDef > prezzo </th>
-      <td mat-cell *matCellDef="let element"> {{element.prezzo.prezzoAlKg}} </td>
+ <!--    
+  <ng-container matColumnDef="prezzo.prezzoAlKg">
+      <th mat-header-cell *matHeaderCellDef> prezzo </th>
+      <td mat-cell *matCellDef="let element"> 
+        <ng-container *ngIf="element.position!==editRowId">
+        <span (click)="edit(element.position,'prezzo.prezzoAlKg')">{{element.prezzo.prezzoAlKg}} </span>
+        </ng-container>
+        <ng-container *ngIf="element.position===editRowId">
+        <input matInput name="prezzo" [(ngModel)]="element.prezzo.prezzoAlKg"> 
+        </ng-container>
+        </td>
     </ng-container>
-  
+-->
+ <ng-container matColumnDef="prezzo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th>
+      <td mat-cell *matCellDef="let element"> {{element.prezzo}} </td>
+    </ng-container> 
+
+   
+    
     <ng-container matColumnDef="azioni">
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
       <td mat-cell *matCellDef="let element"><button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(element.id)"><mat-icon>delete</mat-icon></button> <button type="submit" mat-raised-button color="primary"><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></button>  </td>
     </ng-container>
- 
+  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
-   <div id="PesciExcell">
-  <button type="submit" (click)="inserimentoForm()" mat-raised-button color="primary" id="sposta">{{operazione}}</button>
-  <button mat-raised-button color="primary" (click)="exportAsExcel()">ESPORTA</button></div></div>
-  <mat-paginator [pageSizeOptions]="[50,25,20,10,5,1]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
-  <app-inserimento-pesce (inserito)="inserimentoForm()" *ngIf="form"></app-inserimento-pesce>
+    <div id="PesciExcell">
+      <button type="submit" (click)="inserimentoForm()" mat-raised-button color="primary" id="sposta">{{operazione}}</button>
+      <button mat-raised-button color="primary" (click)="exportAsExcel()">ESPORTA</button>
+    </div>
+</div>
+
+<mat-paginator [pageSizeOptions]="[50,25,20,10,5,1]"
+                showFirstLastButtons 
+                aria-label="Select page of periodic elements">
+</mat-paginator>
+<app-inserimento-pesce (inserito)="inserimentoForm()" *ngIf="form"></app-inserimento-pesce>
 
   

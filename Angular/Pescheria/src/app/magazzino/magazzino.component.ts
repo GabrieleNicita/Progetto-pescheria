@@ -5,11 +5,14 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatInput } from '@angular/material/input';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 import * as XLSX from 'xlsx';
-import { Router } from '@angular/router';
+import { QueryList } from '@angular/core';
+import { ViewChildren } from '@angular/core';
 import { PesceMagazzino } from '../interfaces/PesceMagazzino';
+import { NgModule,Input }  from '@angular/core';
 
 const THUMBUP_ICON =
   `
@@ -26,27 +29,29 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
- //tabella:PesceMagazzino=new Array()
+  tabella:PesceMagazzino[]
   operazione:string
   form:boolean
 
-   displayedColumns: string[]= ['id','nome','categoria.categoria','trattamento.trattamento','prezzo.prezzoAlKg','azioni'];
-   dataSource= new MatTableDataSource<Pesce>();
+   displayedColumns: string[]= ['id','nome','categoria','trattamento','prezzo','azioni'];
+   dataSource= new MatTableDataSource<PesceMagazzino>();
+
    @ViewChild('TABLE',{ read: ElementRef }) table: ElementRef |any; 
    @ViewChild(MatPaginator) paginator: MatPaginator |any ;
    @ViewChild(MatSort) sort: MatSort |any;
-
+   @ViewChildren(MatInput,{read:ElementRef}) inputs:QueryList<ElementRef> |any;
+   editRowId:any
+   
   constructor(
-    private router:Router,
     private pesciSer:PesceService,
     private _liveAnnouncer: LiveAnnouncer,
     iconRegistry: MatIconRegistry, 
     sanitizer: DomSanitizer,
     private pesceServ:PesceService
     ){
-
-    this.table as ElementRef
     
+    this.table as ElementRef
+    this.tabella=new Array()
     this.form=false
     this.operazione="inserisci Opesce"
 
@@ -56,19 +61,21 @@ export class MagazzinoComponent {
     
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
-       /*ps.forEach(p => {
-        this.tabella.id=p.id
-        this.tabella.nome=p.nome
-        this.tabella.descrizione=p.descrizione
-        this.tabella.categoria=p.categoria.categoria
-        this.tabella.trattamento=p.trattamento.trattamento
-        this.tabella.prezzo=p.prezzo.prezzoAlKg
-       });*/
-      // console.log(this.tabella)
+        ps.forEach(
+          p => {
+                  this.dataSource.data.push({
+                    id:p.id,
+                    nome:p.nome,
+                    categoria:p.categoria.categoria,
+                    trattamento:p.trattamento.trattamento,
+                    prezzo:p.prezzo.prezzoAlKg,
+                    descrizione:p.descrizione,
+                    })
+                });
        this.dataSource.sort = this.sort;
-       this.dataSource.paginator = this.paginator; 
-       this.dataSource.data=ps;       
-    })
+       this.dataSource.paginator = this.paginator;                 
+        }
+      )
     
   }
 
@@ -119,7 +126,16 @@ export class MagazzinoComponent {
         window.location.reload()
         
     }
-}
+} 
+ /*
+  edit(row:any,element:any)
+  {
+    this.editRowId=row;
+   
+    setTimeout(()=>{this.inputs.find(x=>{ x.nativeElement.getAttribute('prezzoAlKilo')==element})
+   .nativeElement.focus()
+    })
+  }*/
 
 
 

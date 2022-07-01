@@ -28,7 +28,7 @@ export class InserimentoPesceComponent{
 
     this.formPesce=this.fb.group({
       nome:["",Validators.required],
-      categoria:[Validators.required],
+      categoria:["",Validators.required],
       trattamento:["",Validators.required],
       descrizione:["",Validators.required],
       prezzoAlKg:[0,Validators.required],
