@@ -33,7 +33,7 @@
   
     <ng-container matColumnDef="azioni">
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
-      <td mat-cell *matCellDef="let element"><button type="submit" mat-raised-button color="warn" id="modifica"><mat-icon>delete</mat-icon></button> <button type="submit" mat-raised-button color="primary"><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></button>  </td>
+      <td mat-cell *matCellDef="let element"><button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(element.id)"><mat-icon>delete</mat-icon></button> <button type="submit" mat-raised-button color="primary"><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></button>  </td>
     </ng-container>
  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

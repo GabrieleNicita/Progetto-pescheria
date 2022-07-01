@@ -11,6 +11,8 @@
   top: 18%;
   left: 38.5%;
   right: 38.5%;
+  border-style: groove;
+  border-color: rgba(31, 82, 171, 0.758);
   }
 .pieno{
     width: 100%;

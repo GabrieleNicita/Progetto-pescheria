@@ -1,2 +1,22 @@
+.PRESENTAZIONE{
+    width: 60%;
+    height: 30%;
+    padding: 0.5%;
+    float: left;
+    
+}
+mat-card-header {
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+mat-card-content{
+    text-align: justify;
+    font-size: large;
 
+}
+ .IMMAGINE{
  
+    float: right;
+    right: 10%;
+ }

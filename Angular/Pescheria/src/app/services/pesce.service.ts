@@ -20,5 +20,8 @@ export class PesceService {
     const headers={'content-type':'application/json'} 
     this.http.post(this.pesciURL+'Aggiungi',JSON.stringify(formP),{'headers':headers}).subscribe();
   }
-
+  public rimuoviPesce(idPesce:number){
+    
+    this.http.delete(this.pesciURL+"Cancella/"+idPesce).subscribe();
+  }
 }
