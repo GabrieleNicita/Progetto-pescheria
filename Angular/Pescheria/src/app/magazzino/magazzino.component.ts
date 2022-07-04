@@ -25,9 +25,9 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
-  recordPesce:PesceMagazzino | any
+  recordPesce:PesceMagazzino
   operazione:string
-  form:boolean
+  formIns=false
   confermaCambio:boolean[]=new Array()
 
    displayedColumns: string[]= ['id','nome','categoria','trattamento','prezzo','azioni'];
@@ -49,12 +49,19 @@ export class MagazzinoComponent {
   {
     
     this.table as ElementRef
-    this.form=false
     this.operazione="Inserisci Pesce"
 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
      
-    
+    this.recordPesce={
+      id:0,
+      nome:"",
+      categoria:"",
+      trattamento:"",
+      prezzo:0,
+      descrizione:""
+    }
+
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
         ps.forEach(
@@ -79,13 +86,13 @@ export class MagazzinoComponent {
   }
   
   inserimentoForm(){
-      if(this.form){
+      if(this.formIns){
         window.location.reload()
-        this.form=false
+        this.formIns=false
         this.operazione="NUOVO PESCE"
       }
       else{
-        this.form=true
+        this.formIns=true
         this.operazione="ANNULLA"
       }
     }
@@ -114,9 +121,7 @@ export class MagazzinoComponent {
   }
 
   modificaPesce(pesce:PesceMagazzino){
-    this.recordPesce=pesce
-    
-    
+    this.recordPesce=pesce    
     //console.log(this.recordPesce as PesceMagazzino)
   }
 

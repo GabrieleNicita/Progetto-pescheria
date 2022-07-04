@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Categoria } from '../interfaces/Categoria';
 import { CategorieService } from '../services/categorie.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,7 +6,6 @@ import { TrattamentoService } from '../services/trattamento.service';
 import { Trattamento } from '../interfaces/Trattamento';
 import { Pesce } from '../interfaces/Pesce';
 import { PesceService } from '../services/pesce.service';
-import { PesceMagazzino } from '../interfaces/PesceMagazzino';
 
 @Component({
   selector: 'app-inserimento-pesce',
@@ -14,8 +13,6 @@ import { PesceMagazzino } from '../interfaces/PesceMagazzino';
   styleUrls: ['./inserimento-pesce.component.css']
 })
 export class InserimentoPesceComponent {
-
-  @Input() recordModifica:PesceMagazzino | any;
   @Output() inserito= new EventEmitter()
 
   formPesce:FormGroup

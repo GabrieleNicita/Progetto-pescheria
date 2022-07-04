@@ -42,7 +42,7 @@
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
       <td mat-cell *matCellDef="let pesce">
         <button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(pesce.id)"><mat-icon>delete</mat-icon></button> 
-        <button type="submit" mat-raised-button color="primary" (click)="modificaPesce(pesce)"> <mat-icon svgIcon="thumbs-up"></mat-icon> </button></td>
+        <button type="submit" mat-raised-button color="accent" (click)="modificaPesce(pesce)"> <mat-icon svgIcon="thumbs-up"></mat-icon> </button></td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -63,6 +63,6 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<app-inserimento-pesce [recordModifica]="recordPesce" (inserito)="inserimentoForm()" *ngIf="form" ></app-inserimento-pesce>
-
+<app-inserimento-pesce (inserito)="inserimentoForm()" *ngIf="formIns" ></app-inserimento-pesce>
+<app-modifica-pesce []></app-modifica-pesce>
   

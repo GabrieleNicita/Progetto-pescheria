@@ -1,5 +1,5 @@
 <mat-card>
-    <form [formGroup]="formPesce" (ngSubmit)="subPesce()" autocomplete="off">
+    <form [formGroup]="formModifica" (ngSubmit)="subModifica()" autocomplete="off">
 
         <mat-form-field appearance="fill" class="pieno"> 
             <mat-label>Nome</mat-label>
@@ -34,6 +34,6 @@
             <input formControlName="prezzoAlKg" matInput type="number" class="example-right-align" placeholder=".00">
             <span matPrefix>€&nbsp;</span>
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary">Aggiungi Opesc</button>
+        <button type="submit" mat-raised-button color="accent">Modifica Opesc</button>
     </form>
 </mat-card>

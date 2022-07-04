@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import { ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ModificaPesceComponent } from './modifica-pesce/modifica-pesce.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     CatalogoComponent,
     InserimentoPesceComponent,
     MagazzinoComponent,
+    ModificaPesceComponent,
     
   ],
   imports: [
