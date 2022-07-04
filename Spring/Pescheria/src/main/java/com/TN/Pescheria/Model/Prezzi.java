@@ -24,6 +24,7 @@ public class Prezzi {
 	@Column(name="id_prezzi")
 	@JsonProperty("id")
 	private Integer idprezzo;
+	@JsonProperty("prezzoAlKg")
 	private double prezzo;
 	@OneToMany(mappedBy = "prezzi",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();

@@ -12,6 +12,7 @@ import com.TN.Pescheria.IService.ICategorieService;
 import com.TN.Pescheria.Model.Categorie;
 
 import com.TN.Pescheria.Repository.CategorieRepository;
+
 @Service
 public class CategorieService implements ICategorieService{
 	@Autowired

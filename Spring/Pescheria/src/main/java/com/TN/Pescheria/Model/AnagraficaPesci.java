@@ -25,12 +25,15 @@ public class AnagraficaPesci {
 	private String descrizione;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
+	@JsonProperty("prezzo")
 	Prezzi prezzi;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_categorie")
+	@JsonProperty("categoria")
 	Categorie categorie;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_trattamenti")
+	@JsonProperty("trattamento")
 	Trattamenti trattamenti;
 	public AnagraficaPesci() {};
 	public AnagraficaPesci(Integer idpesce,String nome,String descrizione) {

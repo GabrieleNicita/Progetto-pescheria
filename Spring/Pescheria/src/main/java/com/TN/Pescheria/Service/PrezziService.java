@@ -12,6 +12,7 @@ import com.TN.Pescheria.Model.AnagraficaPesci;
 import com.TN.Pescheria.Model.Prezzi;
 import com.TN.Pescheria.Repository.AnagraficaPesciRepository;
 import com.TN.Pescheria.Repository.PrezziRepository;
+
 @Service
 public class PrezziService implements IPrezziService{
 	@Autowired
