@@ -1,7 +1,8 @@
-import { Component
+import { Component, Input
  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categoria } from '../interfaces/Categoria';
+import { PesceMagazzino } from '../interfaces/PesceMagazzino';
 import { Trattamento } from '../interfaces/Trattamento';
 import { CategorieService } from '../services/categorie.service';
 import { PesceService } from '../services/pesce.service';
@@ -13,6 +14,15 @@ import { TrattamentoService } from '../services/trattamento.service';
   styleUrls: ['./modifica-pesce.component.css']
 })
 export class ModificaPesceComponent{
+
+  @Input() recordModifica={
+    id:0,
+    nome:"",
+    categoria:"",
+    trattamento:"",
+    prezzo:0,
+    descrizione:""
+  }
 
   formModifica:FormGroup
   categoria:Categoria[]=new Array()
@@ -32,19 +42,10 @@ export class ModificaPesceComponent{
         this.trattamentoSer.listaTrattamenti().subscribe(tr=>{(this.trattamento =tr )})
       })
 
-      this.formModifica=this.fb.group({
-        nome:["",Validators.required],
-        categoria:["",Validators.required],
-        trattamento:["",Validators.required],
-        descrizione:["",Validators.required],
-        prezzoAlKg:[0,Validators.required],
-        })
+      this.formModifica=this.fb.group({})
       
     }
-    subModifica(){
-
-      
-    }
+    subModifica(){}
 }
 
 

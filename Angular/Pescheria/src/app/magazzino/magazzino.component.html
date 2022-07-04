@@ -64,5 +64,5 @@
 </mat-toolbar>
 
 <app-inserimento-pesce (inserito)="inserimentoForm()" *ngIf="formIns" ></app-inserimento-pesce>
-<app-modifica-pesce []></app-modifica-pesce>
+<app-modifica-pesce [recordModifica]="recordPesce"></app-modifica-pesce>
   

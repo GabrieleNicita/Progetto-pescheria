@@ -52,15 +52,6 @@ export class MagazzinoComponent {
     this.operazione="Inserisci Pesce"
 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
-     
-    this.recordPesce={
-      id:0,
-      nome:"",
-      categoria:"",
-      trattamento:"",
-      prezzo:0,
-      descrizione:""
-    }
 
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
