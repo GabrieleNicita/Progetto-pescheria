@@ -69,14 +69,17 @@ and (min-width : 702px)  {
 and (max-width : 520px)  {
 
   table {
-    top: 30%;
-    position: relative;
-    width: 100%;
+    top: 25%;
+    left: 12%;
+    right: 12%;
+    position: absolute;
+   
     
   }
  mat-toolbar{
+  top: 10%;
+ position: absolute;
  
- position: relative;
   }
   th.mat-sort-header-sorted{
     color: black;

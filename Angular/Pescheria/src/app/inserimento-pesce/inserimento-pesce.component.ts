@@ -18,7 +18,6 @@ export class InserimentoPesceComponent {
   @Input() recordModifica:PesceMagazzino | any;
   @Output() inserito= new EventEmitter()
 
-  hide=true
   formPesce:FormGroup
   categoria:Categoria[]=new Array()
   trattamento:Trattamento[]=new Array()
