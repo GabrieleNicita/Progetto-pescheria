@@ -1,67 +1,68 @@
-
+<div id="pag">
 <div  #TABLE> 
   <table #table mat-table  [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
-
+    
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id"> ID n. </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let pesce"> {{pesce.id}} </td>
     </ng-container>
     
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nome"> Nome </th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      <td mat-cell *matCellDef="let pesce"> {{pesce.nome}} </td>
     </ng-container>
      
     <ng-container matColumnDef="categoria">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header> categoria </th>
-      <td mat-cell *matCellDef="let element"> {{element.categoria}}</td>
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Categoria </th>
+      <td mat-cell *matCellDef="let pesce"> {{pesce.categoria}}</td>
     </ng-container>
     
     
     <ng-container matColumnDef="trattamento">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> trattamento </th>
-      <td mat-cell *matCellDef="let element"> {{element.trattamento}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Trattamento </th>
+      <td mat-cell *matCellDef="let pesce"> {{pesce.trattamento}} </td>
     </ng-container>
 
     
   <ng-container matColumnDef="prezzo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th>
-      <td mat-cell *matCellDef="let element"> 
-        <ng-container *ngIf="element.position!==editRowId">
-          <span> (click)="edit(element.position,'prezzo')">{{element.prezzo}} </span>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prezzo </th>
+      <td mat-cell *matCellDef="let pesce;let i=index " > 
+        <ng-container *ngIf="pesce.position!==editRowId">
+          <span> (click)="edit(pesce.position,'prezzo')">{{pesce.prezzo}} </span>
         </ng-container>
-        <ng-container *ngIf="element.position===editRowId">
-          <input matInput name="prezzo" [(ngModel)]="element.prezzo"> <button id="spostabottone" mat-raised-button color="accent">V</button>
+        <ng-container *ngIf="pesce.position===editRowId">
+        <div id="prezzo">  <input type="number" matInput name="prezzo" [(ngModel)]="pesce.prezzo" (mousedown)="casellaPrezzo(i)"> </div>
+          <div id="spostabottone" ><button [disabled]="confermaCambio[i]" (click)="cambioPrezzo(pesce.id,pesce.prezzo,i)" mat-raised-button color="accent">V</button></div>
         </ng-container>
        
     </ng-container>
-<!-- 
- <ng-container matColumnDef="prezzo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> prezzo </th> 
-      <td mat-cell *matCellDef="let element"> <input matInput name="prezzo" [(ngModel)]="element.prezzo">   </td>
-    </ng-container> 
---> 
-   
+
     
     <ng-container matColumnDef="azioni">
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
-      <td mat-cell *matCellDef="let element"><button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(element.id)"><mat-icon>delete</mat-icon></button> <button type="submit" mat-raised-button color="primary"><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></button>  </td>
+      <td mat-cell *matCellDef="let pesce">
+        <button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(pesce.id)"><mat-icon>delete</mat-icon></button> 
+        <button type="submit" mat-raised-button color="primary" (click)="modificaPesce(pesce)"> <mat-icon svgIcon="thumbs-up"></mat-icon> </button></td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
-    <div id="PesciExcell">
-      <button type="submit" (click)="inserimentoForm()" mat-raised-button color="primary" id="sposta">{{operazione}}</button>
-      <button mat-raised-button color="primary" (click)="exportAsExcel()">ESPORTA</button>
-    </div>
+   
 </div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div class="PesciExcell">
+        <button type="submit" (click)="inserimentoForm()" mat-raised-button color="primary" id="sposta">{{operazione}}</button>
+      <button mat-raised-button color="primary" (click)="exportAsExcel()">Esporta</button></div>
+    <mat-paginator [pageSizeOptions]="[50,25,20,10,5,1]"
+                showFirstLastButtons class="paginator">
+              </mat-paginator>
 
-<mat-paginator [pageSizeOptions]="[50,25,20,10,5,1]"
-                showFirstLastButtons 
-                aria-label="Select page of periodic elements">
-</mat-paginator>
-<app-inserimento-pesce (inserito)="inserimentoForm()" *ngIf="form"></app-inserimento-pesce>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-inserimento-pesce [recordModifica]="recordPesce" (inserito)="inserimentoForm()" *ngIf="form" ></app-inserimento-pesce>
 
   

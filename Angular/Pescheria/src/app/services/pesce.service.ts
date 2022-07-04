@@ -24,4 +24,9 @@ export class PesceService {
     
     this.http.delete(this.pesciURL+"Cancella/"+idPesce).subscribe();
   }
+
+  public modificaPrezzo(idPesce:number,prezzoPesce:number){
+    this.http.get(this.pesciURL+"Modifica/"+idPesce+"/"+prezzoPesce).subscribe()
+  }
+
 }

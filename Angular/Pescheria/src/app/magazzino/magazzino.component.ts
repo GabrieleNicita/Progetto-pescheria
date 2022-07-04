@@ -1,5 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Pesce } from '../interfaces/Pesce';
+import { Component, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { PesceService } from '../services/pesce.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -9,10 +8,7 @@ import { MatInput } from '@angular/material/input';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 import * as XLSX from 'xlsx';
-import { QueryList } from '@angular/core';
-import { ViewChildren } from '@angular/core';
 import { PesceMagazzino } from '../interfaces/PesceMagazzino';
-import { NgModule,Input }  from '@angular/core';
 
 const THUMBUP_ICON =
   `
@@ -29,9 +25,10 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
-  tabella:PesceMagazzino[]
+  recordPesce:PesceMagazzino | any
   operazione:string
   form:boolean
+  confermaCambio:boolean[]=new Array()
 
    displayedColumns: string[]= ['id','nome','categoria','trattamento','prezzo','azioni'];
    dataSource= new MatTableDataSource<PesceMagazzino>();
@@ -48,16 +45,15 @@ export class MagazzinoComponent {
     iconRegistry: MatIconRegistry, 
     sanitizer: DomSanitizer,
     private pesceServ:PesceService
-    ){
+    )
+  {
     
     this.table as ElementRef
-    this.tabella=new Array()
     this.form=false
-    this.operazione="inserisci Opesce"
+    this.operazione="Inserisci Pesce"
 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
-    
-    
+     
     
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
@@ -71,70 +67,82 @@ export class MagazzinoComponent {
                     prezzo:p.prezzo.prezzoAlKg,
                     descrizione:p.descrizione,
                     })
-                });
+                  this.confermaCambio.push(true)
+                }
+              );
        this.dataSource.sort = this.sort;
-       this.dataSource.paginator = this.paginator;                 
+       this.dataSource.paginator = this.paginator;        
+            
         }
       )
     
   }
-
- exportAsExcel()
-  {
-   
-    
-    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
-    
-   
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Foglio');
-    
-    
-   XLSX.writeFile(wb,'Foglio.xlsx');
-    console.log("exported");
-
-  }
-
-  announceSortChange(sortState: Sort) {
-    
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
   
   inserimentoForm(){
       if(this.form){
-
-      window.location.reload()
-      this.form=false
-      this.operazione="NUOVO PESCE"
+        window.location.reload()
+        this.form=false
+        this.operazione="NUOVO PESCE"
       }
       else{
-      this.form=true
-      this.operazione="ANNULLA"
+        this.form=true
+        this.operazione="ANNULLA"
       }
     }
-    alert(id:number){
+    
+  alert(id:number){
+    
+    if(confirm("SEI SICURO DI VOLER CANCELLARE QUESTO ELEMENTO")) {
+      this.pesceServ.rimuoviPesce(id);
+      window.location.reload()
       
-      if(confirm("SEI SICURO DI VOLER CANCELLARE QUESTO ELEMENTO")) {
-        this.pesceServ.rimuoviPesce(id);
-        window.location.reload()
-        
     }
-} 
- 
-  edit(row:any,element:any)
+  } 
+
+  casellaPrezzo(posizione:number){
+    this.confermaCambio.splice(posizione,1,false)
+  }
+
+  cambioPrezzo(idProdotto:number,prezzoProdotto:number,posizione:number)
+  {
+    this.pesceServ.modificaPrezzo(idProdotto,prezzoProdotto)
+    this.confermaCambio.splice(posizione,1,true)
+  }
+  
+  modificaForm(){
+    
+  }
+
+  modificaPesce(pesce:PesceMagazzino){
+    this.recordPesce=pesce
+    
+    
+    //console.log(this.recordPesce as PesceMagazzino)
+  }
+
+ exportAsExcel()
+ {
+   const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);   
+   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+   XLSX.utils.book_append_sheet(wb, ws, 'Foglio');
+   
+  XLSX.writeFile(wb,'Foglio.xlsx');
+ }
+
+ announceSortChange(sortState: Sort) {
+   
+   if (sortState.direction) {
+     this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+   } else {
+     this._liveAnnouncer.announce('Sorting cleared');
+   }
+ }
+
+ edit(row:any,element:any)
   {
     this.editRowId=row;
     setTimeout(()=>{
       this.inputs.find( (x:any) =>{ x.nativeElement.getAttribute('prezzo')==element}).nativeElement.focus()
     })
-
-    
   }
-
-
-
 }

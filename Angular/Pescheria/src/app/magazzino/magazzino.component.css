@@ -1,34 +1,130 @@
-table {
+
+
+  @media only screen 
+and (min-width : 702px)  {
+  table {
+    top: 22%;
+    left: 0;
+    position: relative;
     width: 100%;
-   
+    height: fit-content;
   }
-  
-  th.mat-sort-header-sorted {
+ mat-toolbar{
+    
+    background-color: aliceblue;
+    position: relative;
+    top:0%
+    
+  }
+  th.mat-sort-header-sorted{
     color: black;
     text-align: center;
   }
   
   #PesciExcell{
-    position: fixed;
     left: 0.5%;
     margin-top: 0.5%;
     width: 35%;
-    
+    margin-right: 35.2%;
   }
+  
+  mat-paginator{
+    background-color: aliceblue;
+  width:93%;
+  }
+
   #sposta{
     margin-right: 1%;
   }
+    
+.mat-input-element{
+    width:20%;
+    padding: 1.5%;
+    float: left;
+    
+  }
+  input[type=number]{
+  font-size: medium;
+  padding-top: 8%;
+  }
   th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
     width: 13.3%;
-    text-align: center;
+    
   }
   #modifica{
     margin-right: 10%;
   }
+   
+  #spostabottone{
+    padding-right: 30%
+  }
+ 
   
   
-  .mat-input-element{
-    width: 20%;
-    padding: 1.5%;
+  mat-toolbar-row{
+    height: fit-content;
+  }}
+
+  @media only screen 
+and (max-width : 520px)  {
+
+  table {
+    top: 30%;
+    position: relative;
+    width: 100%;
     
   }
+ mat-toolbar{
+ 
+ position: relative;
+  }
+  th.mat-sort-header-sorted{
+    color: black;
+    text-align: center;
+  }
+  
+  #PesciExcell{
+    left: 0.5%;
+    margin-top: 0.5%;
+    width: 35%;
+    margin-right: 35.2%;
+  }
+  
+  mat-paginator{
+    background-color: aliceblue;
+  width:93%;
+  }
+
+  #sposta{
+    margin-right: 1%;
+  }
+    
+.mat-input-element{
+    width:20%;
+    padding: 1.5%;
+    float: left;
+    
+  }
+  input[type=number]{
+  font-size: medium;
+  padding-top: 8%;
+  }
+  th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+    width: 13.3%;
+    
+  }
+  #modifica{
+    margin-right: 10%;
+  }
+   
+  #spostabottone{
+    padding-right: 30%
+  }
+ 
+  
+  
+  mat-toolbar-row{
+    height: fit-content;
+    width: fit-content;
+    
+  }}
