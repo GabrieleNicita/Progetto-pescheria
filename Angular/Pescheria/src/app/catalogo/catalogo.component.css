@@ -1,9 +1,12 @@
-.example-card {
-    max-width: 400px;
-   left: 1%;
-  }
-  
- /* .example-header-image {
-    background-image: url('../../assets/categorie/');
-    background-size: cover;
-  }*/
+mat-card{
+  width: 20%;
+  float: left;
+  margin-left:2%;
+  margin-bottom:2%;
+  height:20%;
+  overflow: hidden;
+
+}
+p{
+  overflow: auto;
+}

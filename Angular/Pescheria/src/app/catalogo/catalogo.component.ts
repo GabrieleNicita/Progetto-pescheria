@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
-import { Categoria } from '../interfaces/Categoria';
-import { CategorieService } from '../services/categorie.service';
-
+import { Pesce } from '../interfaces/Pesce';
+import { PesceService } from '../services/pesce.service';
 @Component({
   selector: 'app-catalogo',
   templateUrl: './catalogo.component.html',
@@ -9,13 +8,17 @@ import { CategorieService } from '../services/categorie.service';
 })
 export class CatalogoComponent{
 
-  categoria:Categoria[]=new Array()
+  pesci:Pesce[]=new Array()
 
-  constructor(private categoriaSer:CategorieService) { 
+  constructor(private pesciService:PesceService) { 
     
-    this.categoriaSer.listaCategorie().subscribe(ct=>{(this.categoria =ct )})
+   pesciService.listaPesce().subscribe( ps=>{(this.pesci =ps )})
     
+
+   
   }
 
-
+ Pesci(){
+  console.log(this.pesci);
+ }
 }

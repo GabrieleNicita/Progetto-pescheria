@@ -3,7 +3,7 @@
 
         <mat-form-field appearance="fill" class="pieno"> 
             <mat-label>Nome</mat-label>
-            <input formControlName="nome" matInput>
+            <input formControlName="nome" matInput #input maxlength="19">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="fit">
@@ -26,7 +26,7 @@
 
         <mat-form-field appearance="fill" class="pieno">
             <mat-label>descrizione</mat-label>
-            <textarea matInput formControlName="descrizione"></textarea>
+            <textarea matInput #input maxlength="45" formControlName="descrizione"></textarea>
           </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="always" id="prezzo">

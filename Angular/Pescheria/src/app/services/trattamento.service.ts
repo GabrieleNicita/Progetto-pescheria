@@ -20,4 +20,7 @@ export class TrattamentoService {
     return this.http.get<Trattamento[]>(this.trattamentiURL)
   }
 
+  public trattamento(nomeTrattamento:string):Observable <Trattamento>{
+    return this.http.get<Trattamento>(this.trattamentiURL+":"+nomeTrattamento)
+  }
 }

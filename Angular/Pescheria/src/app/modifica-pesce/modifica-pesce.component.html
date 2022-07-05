@@ -17,7 +17,7 @@
         
         <mat-form-field appearance="fill" class="fit">
             <mat-label>Trattamento pesce</mat-label>
-            <mat-select formControlName="trattamento">
+            <mat-select formControlName="trattamento" >
             <mat-option *ngFor="let trtt of trattamento" [value]="trtt">
                 {{trtt.trattamento}}
             </mat-option>

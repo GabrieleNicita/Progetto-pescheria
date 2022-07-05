@@ -25,9 +25,12 @@ const THUMBUP_ICON =
 
 export class MagazzinoComponent {
   
+  
   recordPesce:PesceMagazzino
   operazione:string
   formIns=false
+  formMod=false
+  modId:number
   confermaCambio:boolean[]=new Array()
 
    displayedColumns: string[]= ['id','nome','categoria','trattamento','prezzo','azioni'];
@@ -48,6 +51,17 @@ export class MagazzinoComponent {
     )
   {
     
+    this.modId=0
+
+    this.recordPesce={
+      id:0,
+      nome:"",
+      categoria:"",
+      trattamento:"",
+      prezzo:0,
+      descrizione:""
+    }
+
     this.table as ElementRef
     this.operazione="Inserisci Pesce"
 
@@ -79,8 +93,6 @@ export class MagazzinoComponent {
   inserimentoForm(){
       if(this.formIns){
         window.location.reload()
-        this.formIns=false
-        this.operazione="NUOVO PESCE"
       }
       else{
         this.formIns=true
@@ -107,13 +119,29 @@ export class MagazzinoComponent {
     this.confermaCambio.splice(posizione,1,true)
   }
   
-  modificaForm(){
-    
+  modificaForm(stato:string){
+    if(stato=="other"){
+      this.formMod=true
+    }
+    else if(stato=="annulla"){
+      this.formMod=false
+    }
+    else{
+      window.location.reload()
+    }
   }
 
   modificaPesce(pesce:PesceMagazzino){
-    this.recordPesce=pesce    
-    //console.log(this.recordPesce as PesceMagazzino)
+    if(this.modId!==pesce.id){
+      this.modId=pesce.id
+      this.modificaForm("other")
+      this.recordPesce=pesce
+    }
+    else{
+      this.modId=0
+      this.modificaForm("annulla")
+    }    
+    
   }
 
  exportAsExcel()

@@ -39,12 +39,7 @@ export class InserimentoPesceComponent {
       descrizione:["",Validators.required],
       prezzoAlKg:[0,Validators.required],
       })
-    }
-    
-
-    
-
-  
+    } 
 
   subPesce(){
     const pesce={
