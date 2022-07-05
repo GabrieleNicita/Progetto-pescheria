@@ -11,5 +11,5 @@ public interface ICategorieService {
 	Optional<Categorie> trovaCategorie(Integer idcategoria);
 	void eliminaCategoria(int idcategoria);
 	List<Categorie> mostracategoria();
-	
+	Optional<Categorie> trovaCategoriadanome(String categoria); 
 }

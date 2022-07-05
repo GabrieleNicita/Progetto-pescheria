@@ -11,4 +11,5 @@ public interface ITrattamentiService {
 	void eliminaTrattamento(int idtrattamento);
 	List<Trattamenti> mostraTrattamento();
 	Optional<Trattamenti> trovaTrattamento(Integer idtrattamento);
+	Optional<Trattamenti> trovaTrattamentoByDescriione(String trattamento);
 }

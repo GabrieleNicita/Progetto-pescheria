@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.TN.Pescheria.IService.ITrattamentiService;
+import com.TN.Pescheria.Model.Categorie;
 import com.TN.Pescheria.Model.Trattamenti;
 @Controller
 @RequestMapping("/Trattamenti")
@@ -43,5 +44,8 @@ public class TrattamentiController {
 	public @ResponseBody Trattamenti trattamentoPerId (@PathVariable(value="id") int idtrattamento) {
 		return trattamentiService.trovaTrattamento(idtrattamento).get();
 	}
-	
+	@GetMapping(path = "/:{trattamento}")
+	public @ResponseBody Trattamenti trattamentiPerDesc(@PathVariable(value="trattamento") String trattam) {
+		return trattamentiService.trovaTrattamentoByDescriione(trattam).get();	
+		}
 }

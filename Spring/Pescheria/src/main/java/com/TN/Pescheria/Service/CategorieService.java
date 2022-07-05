@@ -42,4 +42,9 @@ public class CategorieService implements ICategorieService{
 	public Optional<Categorie> trovaCategorie(Integer idcategoria) {
 		return repository.findById(idcategoria);
 	}
+	@Transactional
+	@Override
+	public Optional<Categorie> trovaCategoriadanome(String categoria) {
+		return repository.findByCategoria(categoria);
+	}
 }

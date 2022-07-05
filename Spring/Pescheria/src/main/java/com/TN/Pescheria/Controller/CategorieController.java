@@ -47,4 +47,8 @@ public class CategorieController {
 	public @ResponseBody Categorie categoriaPerId (@PathVariable(value="id") int idcategoria) {
 		return categorieService.trovaCategorie(idcategoria).get();
 	}
+	@GetMapping(path = "/{categoria}")
+	public @ResponseBody Categorie categorieperDesc(@PathVariable(value="categoria") String categoria) {
+		return categorieService.trovaCategoriadanome(categoria).get();
+	}
 }

@@ -41,4 +41,8 @@ public class TrattamentiService implements ITrattamentiService{
 	public Optional<Trattamenti> trovaTrattamento(Integer idtrattamento) {
 		return repository.findById(idtrattamento);
 	}
+	@Override
+	public Optional<Trattamenti> trovaTrattamentoByDescriione(String trattamento) {
+		return repository.findByTrattamento(trattamento);
+	}
 }
