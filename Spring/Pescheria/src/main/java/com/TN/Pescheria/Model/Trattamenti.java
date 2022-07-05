@@ -7,28 +7,31 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 
 @Table(name = "Trattamenti")
 public class Trattamenti {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	@Column(name="id_trattamenti")
+	@JsonProperty("id")
 	private Integer idtrattamento;
 	private String trattamento;
 	@OneToMany(mappedBy = "trattamenti",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();
-	
-	
-	public Set<AnagraficaPesci> getAnagraficapesci() {
-		return anagraficapesci;
+	public Trattamenti() {}
+	public Trattamenti(Integer idtrattamento,String trattamento) {
+		this.trattamento=trattamento;
+		this.idtrattamento=idtrattamento;
 	}
+	
+	
 	public Integer getIdtrattamento() {
 		return idtrattamento;
 	}

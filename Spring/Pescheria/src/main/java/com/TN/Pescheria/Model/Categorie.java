@@ -7,27 +7,35 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 
 @Table(name = "Categorie")
 public class Categorie {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	@Column(name="id_categorie")
+	@JsonProperty("id")
 	private Integer idcategoria;
 	private String categoria;
 	@OneToMany(mappedBy = "categorie",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();
 	
-	public Set<AnagraficaPesci> getAnagraficapesci() {
-		return anagraficapesci;
+	public Categorie() {
+		
 	}
+	public Categorie(Integer idcategoria,String categoria) {
+		this.idcategoria=idcategoria;
+		this.categoria=categoria;
+	}
+	
+	
 	public String getCategoria() {
 		return categoria;
 	}

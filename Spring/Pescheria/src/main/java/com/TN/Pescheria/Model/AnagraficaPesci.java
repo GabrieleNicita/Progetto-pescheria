@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 
 @Table(name = "anagraficapesci")
@@ -17,18 +19,34 @@ public class AnagraficaPesci {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_anagrafica")
+	@JsonProperty("id")
 	private Integer idpesce;
 	private String nome;
+	private String descrizione;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
+	@JsonProperty("prezzo")
 	Prezzi prezzi;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_categorie")
+	@JsonProperty("categoria")
 	Categorie categorie;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_trattamenti")
+	@JsonProperty("trattamento")
 	Trattamenti trattamenti;
-	
+	public AnagraficaPesci() {};
+	public AnagraficaPesci(Integer idpesce,String nome,String descrizione) {
+		this.idpesce=idpesce;
+		this.nome=nome;
+		this.descrizione=descrizione;
+	};
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
 	public void setIdpesce(Integer idpesce) {
 		this.idpesce = idpesce;
 	}
