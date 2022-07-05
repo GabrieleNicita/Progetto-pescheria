@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TN.Pescheria.IService.IAnagraficaPesciService;
+import com.TN.Pescheria.IService.ICategorieService;
 import com.TN.Pescheria.IService.IPrezziService;
+import com.TN.Pescheria.IService.ITrattamentiService;
 import com.TN.Pescheria.Model.AnagraficaPesci;
+import com.TN.Pescheria.Model.Modifica;
 import com.TN.Pescheria.Model.Prezzi;
 
 @Controller
@@ -28,6 +31,10 @@ public class AnagraficaPesciController {
 	IAnagraficaPesciService anagraficaPesciService;
 	@Autowired
 	IPrezziService prezziService;
+	@Autowired
+	ICategorieService categorieService;
+	@Autowired
+	ITrattamentiService trattamentiService;
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Aggiungi") 
 	public @ResponseBody AnagraficaPesci nuovoPesce(@RequestBody AnagraficaPesci pesce) {
@@ -37,8 +44,12 @@ public class AnagraficaPesciController {
 	}
 	
 	@PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},path="/Modifica") 
-	public @ResponseBody AnagraficaPesci modificaPesce (@RequestBody AnagraficaPesci pesce) {
-		return anagraficaPesciService.modificaPesci(pesce);
+	public @ResponseBody AnagraficaPesci modificaPesce (@RequestBody Modifica m) {
+		trovaprezzo(m.getPrezzi().getPrezzo());
+		AnagraficaPesci pesci=new AnagraficaPesci(m.getPesci().getIdpesce(),m.getPesci().getNome(),m.getPesci().getDescrizione(),prezziService.trovaPrezzoinbasealcosto(m.getPrezzi().getPrezzo()).get(),categorieService.trovaCategoriadanome(m.getCategorie().getCategoria()).get(),trattamentiService.trovaTrattamentoByDescriione(m.getTrattamenti().getTrattamento()).get());
+		
+		return anagraficaPesciService.inserimentoPesci(pesci);
+		
 		}
 	@DeleteMapping(path="/Cancella/{idpesce}") 
 	public @ResponseBody void cancellaPesce (@PathVariable(value="idpesce")Integer idpesce) {
@@ -51,15 +62,9 @@ public class AnagraficaPesciController {
 		return anagraficaPesciService.mostraPesci();
 	}
 	
-	public Prezzi trovaprezzo(Double prezzo){
-		if (prezziService.trovaPrezzoinbasealcosto(prezzo).isPresent()){
-			return prezziService.trovaPrezzoinbasealcosto(prezzo).get();
-		}else{
-			Prezzi prz = new Prezzi(prezzo);
-			return prezziService.inserimentoPrezzo(prz);
-		}
+	
 		
-	}
+	
 	@GetMapping(path="/Modifica/{id}/{prezzo}")
 	public @ResponseBody String modificaByPrezzoId(@PathVariable(value="id")Integer idpesce,@PathVariable(value="prezzo") double prezzo ) {
 		AnagraficaPesci pesce =new AnagraficaPesci();
@@ -67,5 +72,13 @@ public class AnagraficaPesciController {
 		pesce.setPrezzi(trovaprezzo(prezzo));
 		anagraficaPesciService.modificaPesci(pesce);
 		return "Pesce Modificato";
+	}
+	public Prezzi trovaprezzo(Double prezzo){
+		if (prezziService.trovaPrezzoinbasealcosto(prezzo).isPresent()){
+			return prezziService.trovaPrezzoinbasealcosto(prezzo).get();
+		}else{
+			Prezzi prz = new Prezzi(prezzo);
+			return prezziService.inserimentoPrezzo(prz);
+		}
 	}
 }

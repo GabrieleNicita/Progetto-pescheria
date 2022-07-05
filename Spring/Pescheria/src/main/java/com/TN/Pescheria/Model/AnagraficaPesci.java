@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +22,11 @@ public class AnagraficaPesci {
 	@Column(name="id_anagrafica")
 	@JsonProperty("id")
 	private Integer idpesce;
+
+	@Column(length=25)
 	private String nome;
+	
+	@Column(length=200)
 	private String descrizione;
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
@@ -41,6 +46,15 @@ public class AnagraficaPesci {
 		this.nome=nome;
 		this.descrizione=descrizione;
 	};
+	public AnagraficaPesci(Integer idpesce,String nome,String descrizione,Prezzi prezzi,Categorie categorie,Trattamenti trattamenti) {
+		this.idpesce=idpesce;
+		this.nome=nome;
+		this.descrizione=descrizione;
+		this.prezzi=prezzi;
+		this.categorie=categorie;
+		this.trattamenti=trattamenti;
+	};
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
