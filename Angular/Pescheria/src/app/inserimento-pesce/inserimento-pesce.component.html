@@ -1,0 +1,39 @@
+<mat-card>
+    <form [formGroup]="formPesce" (ngSubmit)="subPesce()" autocomplete="off">
+
+        <mat-form-field appearance="fill" class="pieno"> 
+            <mat-label>Nome</mat-label>
+            <input formControlName="nome" matInput #input maxlength="19">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="fit">
+            <mat-label>Categoria pesce</mat-label>
+            <mat-select formControlName="categoria">
+            <mat-option *ngFor="let ctg of categoria" [value]="ctg">
+                {{ctg.categoria}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" class="fit">
+            <mat-label>Trattamento pesce</mat-label>
+            <mat-select formControlName="trattamento">
+            <mat-option *ngFor="let trtt of trattamento" [value]="trtt">
+                {{trtt.trattamento}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="pieno">
+            <mat-label>descrizione</mat-label>
+            <textarea matInput #input maxlength="45" formControlName="descrizione"></textarea>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always" id="prezzo">
+            <mat-label>Prezzo al Kilo</mat-label>
+            <input formControlName="prezzoAlKg" matInput type="number" class="example-right-align" placeholder=".00">
+            <span matPrefix>€&nbsp;</span>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Aggiungi Opesc</button>
+    </form>
+</mat-card>

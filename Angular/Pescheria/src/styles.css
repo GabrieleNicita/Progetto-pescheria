@@ -1,4 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: aqua;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(93, 165, 238);}
+.mat-button.mat-modify,
+.mat-stroked-button.mat-modify {
+    color: maroon;
+}
+.mat-button.mat-modify:hover,
+.mat-stroked-button.mat-modify:hover {
+  background-color: #f0fff3;
+}
+
+.mat-raised-button.mat-modify,
+.mat-flat-button.mat-modify,
+.mat-fab.mat-modify,
+.mat-mini-fab.mat-modify {
+  color: #f0fff3;
+  background-color: maroon;
+}
+
+.mat-icon-button.mat-modify {
+  color:maroon;
+}
+.mat-button.mat-warn,
+.mat-stroked-button.mat-warn {
+    color: rgb(120, 0, 0);
+}
+.mat-button.mat-warn:hover,
+.mat-stroked-button.mat-warn:hover {
+  background-color: #f0fff3;
+}
+
+.mat-raised-button.mat-warn,
+.mat-flat-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+  color: #f0fff3;
+  background-color: rgb(120, 0, 0);
+}
+
+.mat-icon-button.mat-warn {
+  color:#155724;
+}

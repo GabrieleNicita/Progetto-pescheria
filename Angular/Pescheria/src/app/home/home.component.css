@@ -1,10 +1,24 @@
-.example-card {
-    max-width: 400px;
-   left: 1%;
-  }
-  
-  .example-header-image {
-    background-image: url('../../assets/Pesci/TonnoIcon.jpg');
-    background-size: cover;
-  }
+.PRESENTAZIONE{
+    width: fit-content;
+    height: 30%;
+    padding: 0.5%;
+    float: left;
+    height: fit-content;
+}
+
+mat-card-header {
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    
+}
+mat-card-content{
+    text-align: justify;
+    font-size: large;
+   
+}
+ .IMMAGINE{
  
+    float: right;
+    right: 10%;
+ }
