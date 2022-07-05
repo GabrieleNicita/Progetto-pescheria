@@ -17,6 +17,18 @@ const THUMBUP_ICON =
 <g><path d="M774.6,990.1H71.1c-33.8,0-61.1-27.4-61.1-61.2V163.5c0-33.8,27.3-61.2,61.1-61.2h490l1.6,1.6l-61.8,59.7H71.1v765.4h703.5V539l61.2-58.5v448.4C835.8,962.8,808.4,990.1,774.6,990.1L774.6,990.1z M943.9,245.2C913.7,276.3,541,643.6,521.7,662.7c-3,2.9-6.7,5.1-10.7,6.3c-30.6,9.1-216.6,69.3-218.4,70c-2.6,0.8-5.2,1.2-7.9,1.2c-6.7,0-13.2-2.6-18.1-7.5c-6.8-6.7-9.4-16.8-6.5-26.1c0.5-1.8,55.6-182.1,66.6-222.8c1.1-4.4,3.5-8.4,6.6-11.6c0,0,405.5-405.3,419.8-419.4c10.1-10.1,47.2-43,98.1-43c32.5,0,62.9,13.4,90.6,39.9c31.3,30.1,47.6,62.3,48.2,95.8C990.6,179.5,975.1,212.9,943.9,245.2L943.9,245.2z M899.5,94c-16-15.4-31.8-22.9-48.2-22.9c-28.9,0-52.3,22.5-54.9,25.1C783.1,109.3,435.7,456.4,383.2,509c-8.8,31-28.5,96.6-44.9,150.9c51-16.5,118.5-38.2,146.7-46.9l18.8-18.5C749.7,352,882.9,220.1,899.9,202.6c19.4-20.1,29.1-38.9,28.8-55.9C928.6,130.1,918.6,112.4,899.5,94L899.5,94z"/></g>
 </svg>
 `;
+const Conferma =
+  `
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  width="405.272px" height="405.272px" viewBox="0 0 405.272 405.272" style="enable-background:new 0 0 405.272 405.272;"
+  xml:space="preserve">
+<g>
+ <path d="M393.401,124.425L179.603,338.208c-15.832,15.835-41.514,15.835-57.361,0L11.878,227.836
+   c-15.838-15.835-15.838-41.52,0-57.358c15.841-15.841,41.521-15.841,57.355-0.006l81.698,81.699L336.037,67.064
+   c15.841-15.841,41.523-15.829,57.358,0C409.23,82.902,409.23,108.578,393.401,124.425z"/>
+
+</svg>
+`;
 @Component({
   selector: 'app-magazzino',
   templateUrl: './magazzino.component.html',
@@ -66,7 +78,7 @@ export class MagazzinoComponent {
     this.operazione="Inserisci Pesce"
 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
-
+    iconRegistry.addSvgIconLiteral('conferma', sanitizer.bypassSecurityTrustHtml(Conferma));
     this.pesciSer.listaPesce().subscribe(
       ps=>{  
         ps.forEach(
@@ -92,7 +104,7 @@ export class MagazzinoComponent {
   
   inserimentoForm(){
       if(this.formIns){
-        window.location.reload()
+        setTimeout(location.reload.bind(location),50)
       }
       else{
         this.formIns=true
@@ -104,7 +116,7 @@ export class MagazzinoComponent {
     
     if(confirm("SEI SICURO DI VOLER CANCELLARE QUESTO ELEMENTO")) {
       this.pesceServ.rimuoviPesce(id);
-      window.location.reload()
+      setTimeout(location.reload.bind(location),50)
       
     }
   } 
@@ -127,7 +139,7 @@ export class MagazzinoComponent {
       this.formMod=false
     }
     else{
-      window.location.reload()
+      setTimeout(location.reload.bind(location),50)
     }
   }
 

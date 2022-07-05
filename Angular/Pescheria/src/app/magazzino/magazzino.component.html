@@ -26,21 +26,21 @@
     
   <ng-container matColumnDef="prezzo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Prezzo </th>
-      <td mat-cell *matCellDef="let pesce;let i=index " > 
+      <td mat-cell *matCellDef="let pesce ;let i=index " >
         <ng-container *ngIf="pesce.position!==editRowId">
           <span> (click)="edit(pesce.position,'prezzo')">{{pesce.prezzo}} </span>
         </ng-container>
-        <ng-container *ngIf="pesce.position===editRowId">
-        <div id="prezzo">  <input type="number" matInput name="prezzo" [(ngModel)]="pesce.prezzo" (mousedown)="casellaPrezzo(i)"> </div>
-          <div id="spostabottone" ><button [disabled]="confermaCambio[i]" (click)="cambioPrezzo(pesce.id,pesce.prezzo,i)" mat-raised-button color="accent">V</button></div>
+       <ng-container *ngIf="pesce.position===editRowId">
+             <input type="number" matInput name="prezzo" [(ngModel)]="pesce.prezzo" (mousedown)="casellaPrezzo(i)"> 
+             <button [disabled]="confermaCambio[i]" (click)="cambioPrezzo(pesce.id,pesce.prezzo,i)" mat-raised-button color="confirm"><mat-icon svgIcon="conferma"></mat-icon></button> 
         </ng-container>
-       
+        </td>
     </ng-container>
 
     
     <ng-container matColumnDef="azioni">
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
-      <td mat-cell *matCellDef="let pesce, let p of ps">
+      <td mat-cell *matCellDef="let pesce">
         <button  type="submit" mat-raised-button color="warn" id="modifica" (click)="alert(pesce.id)"><mat-icon>delete</mat-icon></button> 
         <button type="submit" mat-raised-button color="accent" (click)="modificaPesce(pesce)"> <mat-icon svgIcon="thumbs-up"></mat-icon> </button></td>
     </ng-container>

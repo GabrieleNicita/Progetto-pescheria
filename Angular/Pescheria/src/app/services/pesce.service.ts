@@ -2,13 +2,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Pesce } from '../interfaces/Pesce';
+import { modificaPesce } from '../interfaces/ModificaPesce';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PesceService {
+
+  coso:any
   pesciURL:string
   localhost="localhost"
   host="192.168.88.249"
+
+
   constructor(private http: HttpClient) { 
     this.pesciURL="http://"+this.host+":8080"+"/Pesci/"
   }
@@ -20,8 +26,8 @@ export class PesceService {
     const headers={'content-type':'application/json'} 
     this.http.post(this.pesciURL+'Aggiungi',JSON.stringify(formP),{'headers':headers}).subscribe();
   }
+
   public rimuoviPesce(idPesce:number){
-    
     this.http.delete(this.pesciURL+"Cancella/"+idPesce).subscribe();
   }
 
@@ -29,4 +35,8 @@ export class PesceService {
     this.http.get(this.pesciURL+"Modifica/"+idPesce+"/"+prezzoPesce).subscribe()
   }
 
+  public modificaPesce(pesceModifica:modificaPesce){
+    const headers={'content-type':'application/json'}
+    this.http.put<Pesce>(this.pesciURL+"Modifica",JSON.stringify(pesceModifica) , {'headers':headers}).subscribe(mdP=>console.log(mdP))
+  }
 }

@@ -3,28 +3,28 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(93, 165, 238);}
 .mat-button.mat-modify,
-.mat-stroked-button.mat-modify {
-    color: maroon;
+.mat-stroked-button.mat-confirm {
+    color: greenyellow;
 }
-.mat-button.mat-modify:hover,
-.mat-stroked-button.mat-modify:hover {
+.mat-button.mat-confirm:hover,
+.mat-stroked-button.mat-confirm:hover {
   background-color: #f0fff3;
 }
 
-.mat-raised-button.mat-modify,
-.mat-flat-button.mat-modify,
-.mat-fab.mat-modify,
-.mat-mini-fab.mat-modify {
+.mat-raised-button.mat-confirm,
+.mat-flat-button.mat-confirm,
+.mat-fab.mat-confirm,
+.mat-mini-fab.mat-confirm {
   color: #f0fff3;
-  background-color: maroon;
+  background-color: greenyellow;
 }
 
-.mat-icon-button.mat-modify {
-  color:maroon;
+.mat-icon-button.mat-confirm {
+  color:greenyellow;
 }
 .mat-button.mat-warn,
 .mat-stroked-button.mat-warn {
-    color: rgb(120, 0, 0);
+    color: greenyellow;
 }
 .mat-button.mat-warn:hover,
 .mat-stroked-button.mat-warn:hover {

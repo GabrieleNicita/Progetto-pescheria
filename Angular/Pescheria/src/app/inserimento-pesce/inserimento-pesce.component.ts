@@ -37,11 +37,12 @@ export class InserimentoPesceComponent {
       categoria:["",Validators.required],
       trattamento:["",Validators.required],
       descrizione:["",Validators.required],
-      prezzoAlKg:[0,Validators.required],
+      prezzoAlKg:["",Validators.required],
       })
     } 
 
   subPesce(){
+    if(!this.formPesce.invalid){
     const pesce={
       nome:this.formPesce.value.nome,
       categoria:this.formPesce.value.categoria,
@@ -50,9 +51,12 @@ export class InserimentoPesceComponent {
       prezzo:{
         prezzoAlKg:this.formPesce.value.prezzoAlKg
       }
+      
     } 
+    
     this.pesceServ.aggiungiPesce(pesce as Pesce)
     this.inserito.emit()
   }
+}
 
 }
