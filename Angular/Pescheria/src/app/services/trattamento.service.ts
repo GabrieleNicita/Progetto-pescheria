@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Trattamento } from '../interfaces/Trattamento';
 
 @Injectable({
@@ -9,11 +10,10 @@ import { Trattamento } from '../interfaces/Trattamento';
 export class TrattamentoService {
 
   trattamentiURL:string
-  localhost="localhost"
-  host="192.168.88.249"
+ 
 
   constructor(private http: HttpClient) {
-    this.trattamentiURL="http://"+this.host+":8080"+"/Trattamenti/"
+    this.trattamentiURL="http://"+environment.host+":8080"+"/Trattamenti/"
   }
 
   public listaTrattamenti():Observable<Trattamento[]>{

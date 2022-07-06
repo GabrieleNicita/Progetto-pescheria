@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient,HttpEventType} from '@angular/common/http';
 import { Pesce } from '../interfaces/Pesce';
 import { modificaPesce } from '../interfaces/ModificaPesce';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 
 export class PesceService {
 
-  coso:any
   pesciURL:string
-  localhost="localhost"
-  host="192.168.88.249"
-
-
   constructor(private http: HttpClient) { 
-    this.pesciURL="http://"+this.host+":8080"+"/Pesci/"
-  }
+      this.pesciURL="http://"+environment.host+":8080"+"/Pesci/"
+    }
+    
+
   public listaPesce():Observable <Pesce[]>{
     return this.http.get<Pesce[]>(this.pesciURL)
   }
@@ -39,4 +37,7 @@ export class PesceService {
     const headers={'content-type':'application/json'}
     this.http.put<Pesce>(this.pesciURL+"Modifica",JSON.stringify(pesceModifica) , {'headers':headers}).subscribe(mdP=>console.log(mdP))
   }
+
+  public uploadP(){}
+
 }

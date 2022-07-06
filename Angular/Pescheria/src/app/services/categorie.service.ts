@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { Categoria } from '../interfaces/Categoria';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,10 @@ import { Categoria } from '../interfaces/Categoria';
 export class CategorieService {
 
   categorieURL:string
-  localhost="localhost"
-  host="192.168.88.249"
+  
 
   constructor(private http: HttpClient) {
-    this.categorieURL="http://"+this.host+":8080"+"/Categorie/"
+    this.categorieURL="http://"+environment.host+":8080"+"/Categorie/"
   }
 
   public listaCategorie():Observable <Categoria[]>{
