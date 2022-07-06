@@ -23,6 +23,9 @@ public class Categorie {
 	@Column(name="id_categorie")
 	@JsonProperty("id")
 	private Integer idcategoria;
+	@Column(length = 250)
+	private String fotoCategoria;
+	
 	private String categoria;
 	@OneToMany(mappedBy = "categorie",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();
@@ -50,5 +53,11 @@ public class Categorie {
 	}
 	public void setIdcategoria(Integer idcategoria) {
 		this.idcategoria = idcategoria;
+	}
+	public String getFotoCategoria() {
+		return fotoCategoria;
+	}
+	public void setFotoCategoria(String fotoCategoria) {
+		this.fotoCategoria = fotoCategoria;
 	}
 }

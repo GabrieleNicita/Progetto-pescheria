@@ -28,6 +28,9 @@ public class AnagraficaPesci {
 	
 	@Column(length=200)
 	private String descrizione;
+	@Column(length = 250)
+	private String fotoPesce; 
+	
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="id_prezzi")
 	@JsonProperty("prezzo")
@@ -90,5 +93,11 @@ public class AnagraficaPesci {
 	}
 	public Trattamenti getTrattamenti() {
 		return trattamenti;
+	}
+	public String getFotoPesce() {
+		return fotoPesce;
+	}
+	public void setFotoPesce(String fotoPesce) {
+		this.fotoPesce = fotoPesce;
 	}
 }
