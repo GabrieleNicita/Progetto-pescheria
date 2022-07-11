@@ -9,4 +9,5 @@ export interface Pesce{
     trattamento:Trattamento
     prezzo:Prezzo
     descrizione:string
+    foto:string
 }

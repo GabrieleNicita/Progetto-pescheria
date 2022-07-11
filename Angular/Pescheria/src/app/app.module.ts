@@ -21,7 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import { ModificaPesceComponent } from './modifica-pesce/modifica-pesce.component';
-import { FotoUploadComponent } from './foto-upload/foto-upload.component';
+import { PreviewComponent } from './preview/preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,7 @@ import { FotoUploadComponent } from './foto-upload/foto-upload.component';
     InserimentoPesceComponent,
     MagazzinoComponent,
     ModificaPesceComponent,
-    FotoUploadComponent,
+    PreviewComponent,
     
   ],
   imports: [

@@ -34,6 +34,8 @@
             <input formControlName="prezzoAlKg" matInput type="number" class="example-right-align" placeholder=".00">
             <span matPrefix>€&nbsp;</span>
         </mat-form-field>
+        <input #fileInput type='file' (change)="onImageUpload($event);" style="display:none;"/>
+        <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">FOTO</button>
         <button type="submit" mat-raised-button color="primary">Aggiungi Opesc</button>
     </form>
 </mat-card>

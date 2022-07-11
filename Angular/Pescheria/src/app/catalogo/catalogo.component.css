@@ -3,10 +3,12 @@ mat-card{
   float: left;
   margin-left:2%;
   margin-bottom:2%;
-  height:20%;
   overflow: hidden;
 
 }
 p{
   overflow: auto;
 }
+img{
+  height: 50%;
+ }

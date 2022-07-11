@@ -15,6 +15,7 @@ import { PesceService } from '../services/pesce.service';
 export class InserimentoPesceComponent {
   @Output() inserito= new EventEmitter()
 
+  imgFD = new FormData()
   formPesce:FormGroup
   categoria:Categoria[]=new Array()
   trattamento:Trattamento[]=new Array()
@@ -41,8 +42,32 @@ export class InserimentoPesceComponent {
       })
     } 
 
+  imageSrc: string | any;
+
+  onImageUpload(event: any){
+
+    if (event.target.files && event.target.files[0]) {
+
+      const pesce={
+        nome:this.formPesce.value.nome,
+        categoria:this.formPesce.value.categoria,
+        trattamento:this.formPesce.value.trattamento,
+        descrizione:this.formPesce.value.descrizione,
+        prezzo:{
+          prezzoAlKg:this.formPesce.value.prezzoAlKg
+        }
+        
+      } as Pesce
+        
+        this.imgFD.append('image',event.target.files[0] as File,event.target.files[0].name)
+        this.imgFD.append('cos',JSON.stringify(pesce))
+        
+      }
+ 
+    }
+
   subPesce(){
-    if(!this.formPesce.invalid){
+    
     const pesce={
       nome:this.formPesce.value.nome,
       categoria:this.formPesce.value.categoria,
@@ -53,7 +78,7 @@ export class InserimentoPesceComponent {
       }
       
     } 
-    
+    if(!this.formPesce.invalid){
     this.pesceServ.aggiungiPesce(pesce as Pesce)
     this.inserito.emit()
   }
