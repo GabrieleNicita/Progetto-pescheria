@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "Categorie")
 public class Categorie {
 	@Id
-	
 	@Column(name="id_categorie")
 	@JsonProperty("id")
 	private Integer idcategoria;

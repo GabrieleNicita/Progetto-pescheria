@@ -1,7 +1,7 @@
 package com.TN.Pescheria.Controller;
 
 
-import java.io.IOException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.TN.Pescheria.IService.IAnagraficaPesciService;
 import com.TN.Pescheria.IService.ICategorieService;
@@ -39,31 +38,30 @@ public class AnagraficaPesciController {
 	@Autowired
 	ITrattamentiService trattamentiService;
 	
+	//@RequestParam("image")MultipartFile multipartFile,
+	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Aggiungi") 
-	public @ResponseBody AnagraficaPesci nuovoPesce(@RequestParam("image")MultipartFile multipartFile,@RequestBody AnagraficaPesci pesce) throws IOException{
+	public @ResponseBody AnagraficaPesci nuovoPesce(@RequestBody AnagraficaPesci pesce){
 		pesce.setPrezzi(trovaprezzo(pesce.getPrezzi().getPrezzo()));
 		return anagraficaPesciService.inserimentoPesci(pesce);
-		
 	}
 	
-	@PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},path="/Modifica") 
+	@PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},path="/Modifica") 
 	public @ResponseBody AnagraficaPesci modificaPesce (@RequestBody Modifica m) {
 		trovaprezzo(m.getPrezzi().getPrezzo());
 		AnagraficaPesci pesci=new AnagraficaPesci(m.getPesci().getIdpesce(),m.getPesci().getNome(),m.getPesci().getDescrizione(),prezziService.trovaPrezzoinbasealcosto(m.getPrezzi().getPrezzo()).get(),categorieService.trovaCategoriadanome(m.getCategorie().getCategoria()).get(),trattamentiService.trovaTrattamentoByDescriione(m.getTrattamenti().getTrattamento()).get());
-		
 		return anagraficaPesciService.inserimentoPesci(pesci);
-		
 		}
 	@DeleteMapping(path="/Cancella/{idpesce}") 
 	public @ResponseBody void cancellaPesce (@PathVariable(value="idpesce")Integer idpesce) {
 		anagraficaPesciService.eliminaPesce(idpesce);
-		
 	}
 	
 	@GetMapping(path="/") 
 	public @ResponseBody List<AnagraficaPesci> listaPesci () {
 		return anagraficaPesciService.mostraPesci();
 	}
+	
 	@GetMapping(path="/Modifica/{id}/{prezzo}")
 	public @ResponseBody String modificaByPrezzoId(@PathVariable(value="id")Integer idpesce,@PathVariable(value="prezzo") double prezzo ) {
 		AnagraficaPesci pesce =new AnagraficaPesci();
