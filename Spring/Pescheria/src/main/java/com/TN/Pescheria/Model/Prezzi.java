@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 
@@ -20,16 +23,21 @@ public class Prezzi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_prezzi")
+	@JsonProperty("id")
 	private Integer idprezzo;
+	@JsonProperty("prezzoAlKg")
 	private double prezzo;
 	@OneToMany(mappedBy = "prezzi",fetch =FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<AnagraficaPesci> anagraficapesci= new HashSet<>();
+	public Prezzi() {}
+	public Prezzi(double prezzo) {
+		
+		this.prezzo=prezzo;
+	}
 	public Integer getIdprezzo() {
 		return idprezzo;
 	}
-	public Set<AnagraficaPesci> getPrenotazioni() {
-		return anagraficapesci;
-	}
+	
 	public double getPrezzo() {
 		return prezzo;
 	}
